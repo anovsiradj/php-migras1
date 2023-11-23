@@ -18,10 +18,10 @@ class PdoDriver extends Driver
 	{
 		try {
 			$result = $this->connect->exec($sql);
-			$this->logs[] = ['query' => $sql, 'result' => $result];
+			$this->logs[] = ['sql' => $sql, 'result' => $result];
 			return true;
 		} catch (Exception $e) {
-			$this->logs[] = ['query' => $sql, 'error' => $e->getMessage()];
+			$this->logs[] = ['sql' => $sql, 'error' => $e->getMessage()];
 			return false;
 		}
 	}

@@ -6,18 +6,18 @@ use Exception;
 
 class FileRunner extends Runner
 {
-	public function exec($file)
+	public function run($file)
 	{
 		if (preg_match('/\.sql$/i', $file) !== false) {
-			$this->execSql($file);
+			$this->runSql($file);
 		} elseif (preg_match('/\.php$/i', $file) !== false) {
-			$this->execPhp($file);
+			$this->runPhp($file);
 		} else {
 			echo "[SKIP] {$file}", PHP_EOL;
 		}
 	}
 
-	public function loopExec($dir)
+	public function runDir($dir)
 	{
 		if (empty($dir)) {
 			echo '[SKIP] loopExec', PHP_EOL;
@@ -25,11 +25,11 @@ class FileRunner extends Runner
 
 		$files = glob($dir . '/{,*/}*', GLOB_BRACE);
 		foreach ($files as $file) {
-			$this->exec($file);
+			$this->run($file);
 		}
 	}
 
-	public function execSql($file)
+	public function runSql($file)
 	{
 		$sql = file_get_contents($file);
 
@@ -40,7 +40,7 @@ class FileRunner extends Runner
 		}
 	}
 
-	public function execPhp($file)
+	public function runPhp($file)
 	{
 		extract((array) $this);
 

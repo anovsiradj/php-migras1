@@ -13,8 +13,8 @@ $driver->connect($connect);
 $runner = new FileRunner;
 $runner->driver($driver);
 
-$runner->exec("{$env['MYSQL_FILE_DIR']}/structures.sql");
-$runner->loopExec("{$env['MYSQL_FILE_DIR']}/patches");
-$runner->exec("{$env['MYSQL_FILE_DIR']}/contents.sql");
+$runner->run("{$env['MYSQL_FILE_DIR']}/structures.sql");
+$runner->runDir("{$env['MYSQL_FILE_DIR']}/patches");
+$runner->run("{$env['MYSQL_FILE_DIR']}/contents.sql");
 
 dump($driver->logs('error'));
