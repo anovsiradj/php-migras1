@@ -2,8 +2,10 @@
 
 ### todos (grouped and ordered by priority)
 
+
 must:
 
+- ~~pdo mysql/mariadb driver~~
 - pdo pgsql driver
 - pdo sqlite driver
 
@@ -18,7 +20,7 @@ may:
 - has loader to load and read files
 - can using `.sql` and `.php`
 
-### references
+### refs
 
 - https://bitbucket.org/voilab/migrate/src/master/
 - https://github.com/alphasoft-fr/sql-migration
@@ -31,3 +33,7 @@ may:
 - https://github.com/wgirhad/migrate
 - https://github.com/KhristaFlower/php-database-migration
 - https://github.com/mathamoz/migrant
+
+### docs
+
+- https://www.php.net/manual/en/book.pdo.php
