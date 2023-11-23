@@ -1,0 +1,29 @@
+{
+    "name": "anovsiradj/sqlrun",
+    "description": "migrasi SQL satu arah",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "anovsiradj",
+            "email": "anov.siradj22@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "anovsiradj\\sqlrun\\drivers\\": "./drivers/",
+            "anovsiradj\\sqlrun\\loaders\\": "./loaders/",
+            "anovsiradj\\sqlrun\\runners\\": "./runners/"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "symfony/dotenv": "~5",
+        "symfony/var-dumper": "~5"
+    }
+}
