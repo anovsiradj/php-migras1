@@ -12,7 +12,7 @@ class PdoDriver extends Driver
 	/**
 	 * @param PDO $connect
 	 */
-	public function connect(&$connect)
+	public function connect($connect)
 	{
 		$this->connect = $connect;
 	}

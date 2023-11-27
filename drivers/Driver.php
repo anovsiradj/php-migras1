@@ -24,19 +24,19 @@ class Driver
 
 	public function fetchOne($sql)
 	{
-		$this->logs[] = ['fetch' => $sql, 'error' => 'unimplemented'];
+		$this->logs[] = ['query' => $sql, 'error' => 'unimplemented'];
 		return null;
 	}
 
 	public function fetchAll($sql)
 	{
-		$this->logs[] = ['fetch' => $sql, 'error' => 'unimplemented'];
+		$this->logs[] = ['query' => $sql, 'error' => 'unimplemented'];
 		return null;
 	}
 
 	public function fetchScalar($sql)
 	{
-		$this->logs[] = ['fetch' => $sql, 'error' => 'unimplemented'];
+		$this->logs[] = ['query' => $sql, 'error' => 'unimplemented'];
 		return null;
 	}
 }

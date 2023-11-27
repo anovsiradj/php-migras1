@@ -8,7 +8,7 @@ class Runner
 {
 	public Driver $driver;
 
-	public function driver(Driver &$driver)
+	public function driver($driver)
 	{
 		$this->driver = $driver;
 	}

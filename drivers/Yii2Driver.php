@@ -12,7 +12,7 @@ class Yii2Driver extends Driver
 	/**
 	 * @param Connection $connect
 	 */
-	public function connect(&$connect)
+	public function connect($connect)
 	{
 		$this->connect = $connect;
 	}

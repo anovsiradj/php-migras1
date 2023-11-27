@@ -3,20 +3,20 @@
 ### todos (grouped and ordered by priority)
 
 must:
-- laravel driver
-- pdo sqlite driver
 
 may:
+- pdo sqlite driver
 - mysql driver
 - sqlite3 driver
 - pdo firebird driver
 
 done:
+- has loader to load and read files
+- can using `.sql` and `.php`
 - pdo mysql/mariadb driver
 - pdo pgsql driver
 - yii2 driver
-- has loader to load and read files
-- can using `.sql` and `.php`
+- laravel driver
 
 ### refs
 
