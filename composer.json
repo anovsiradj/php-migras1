@@ -13,8 +13,14 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "anovsiradj\\sqlrun\\drivers\\": "./drivers/",
-            "anovsiradj\\sqlrun\\runners\\": "./runners/"
+            "anovsiradj\\sqlrun\\drivers\\": "./drivers",
+            "anovsiradj\\sqlrun\\runners\\": "./runners"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "sqlrun\\yii2\\": "./tests/yii2",
+            "sqlrun\\laravel\\": "./tests/laravel"
         }
     },
     "repositories": [
