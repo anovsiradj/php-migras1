@@ -2,21 +2,19 @@
 
 ### todos (grouped and ordered by priority)
 
-
 must:
-
-- ~~pdo mysql/mariadb driver~~
-- pdo pgsql driver
+- laravel driver
 - pdo sqlite driver
 
 may:
-
 - mysql driver
 - sqlite3 driver
 - pdo firebird driver
 
-### ideas
-
+done:
+- pdo mysql/mariadb driver
+- pdo pgsql driver
+- yii2 driver
 - has loader to load and read files
 - can using `.sql` and `.php`
 
@@ -37,3 +35,4 @@ may:
 ### docs
 
 - https://www.php.net/manual/en/book.pdo.php
+- https://gist.github.com/CMCDragonkai/21269f06cea88c76be47ed73a2a5af9d

@@ -14,16 +14,28 @@
     "autoload": {
         "psr-4": {
             "anovsiradj\\sqlrun\\drivers\\": "./drivers/",
-            "anovsiradj\\sqlrun\\loaders\\": "./loaders/",
             "anovsiradj\\sqlrun\\runners\\": "./runners/"
         }
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "require": {
-        "php": ">=7.4",
-        "ext-pdo": "*"
+        "php": ">=7.4"
     },
     "require-dev": {
+        "ext-pdo": "*",
         "symfony/dotenv": "~5",
-        "symfony/var-dumper": "~5"
+        "symfony/var-dumper": "~5",
+        "yiisoft/yii2": "@dev",
+        "laravel/framework": "~8"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
     }
 }

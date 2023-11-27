@@ -8,19 +8,36 @@ class FileRunner extends Runner
 {
 	public function run($file)
 	{
+		if (empty($file)) {
+			echo '[SKIP] file is empty', PHP_EOL;
+			return;
+		}
+
+		if (!file_exists($file) || !is_file($file)) {
+			echo "[SKIP] file not exist", PHP_EOL;
+			return;
+		}
+
 		if (preg_match('/\.sql$/i', $file) !== false) {
 			$this->runSql($file);
 		} elseif (preg_match('/\.php$/i', $file) !== false) {
 			$this->runPhp($file);
 		} else {
 			echo "[SKIP] {$file}", PHP_EOL;
+			return;
 		}
 	}
 
 	public function runDir($dir)
 	{
 		if (empty($dir)) {
-			echo '[SKIP] loopExec', PHP_EOL;
+			echo '[SKIP] dir is empty', PHP_EOL;
+			return;
+		}
+
+		if (!file_exists($dir) || !is_dir($dir)) {
+			echo '[SKIP] dir not exist', PHP_EOL;
+			return;
 		}
 
 		$files = glob($dir . '/{,*/}*', GLOB_BRACE);

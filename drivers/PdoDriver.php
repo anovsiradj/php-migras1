@@ -2,8 +2,8 @@
 
 namespace anovsiradj\sqlrun\drivers;
 
-use Exception;
 use PDO;
+use PDOException;
 
 class PdoDriver extends Driver
 {
@@ -16,13 +16,33 @@ class PdoDriver extends Driver
 
 	public function query($sql)
 	{
+		if (empty($sql)|| empty(trim($sql))) {
+			$this->logs[] = ['query' => $sql, 'error' => 'empty'];
+			return false;
+		}
+
 		try {
 			$result = $this->connect->exec($sql);
-			$this->logs[] = ['sql' => $sql, 'result' => $result];
-			return true;
-		} catch (Exception $e) {
-			$this->logs[] = ['sql' => $sql, 'error' => $e->getMessage()];
+
+			$log = [
+				'query' => $sql,
+				'result' => $result,
+			];
+
+			if ($result !== false) {
+				$this->logs[] = $log;
+			} else {
+				$this->logs[] = array_merge($log, ['error' => $this->connect->errorInfo()]);
+			}
+			return ($result !== false);
+
+		} catch (PDOException $e) {
+			$this->logs[] = [
+				'query' => $sql,
+				'error' => $e->errorInfo,
+			];
 			return false;
+
 		}
 	}
 }
