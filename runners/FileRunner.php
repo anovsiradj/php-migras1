@@ -8,7 +8,7 @@ class FileRunner extends Runner
 {
 	public function run($file)
 	{
-		if (empty($file)) {
+		if (empty($file) || trim($file) === '') {
 			echo '[SKIP] file is empty', PHP_EOL;
 			return;
 		}
@@ -18,19 +18,18 @@ class FileRunner extends Runner
 			return;
 		}
 
-		if (preg_match('/\.sql$/i', $file) !== false) {
+		if (preg_match('/\.sql$/i', $file) === 1) {
 			$this->runSql($file);
-		} elseif (preg_match('/\.php$/i', $file) !== false) {
+		} elseif (preg_match('/\.php$/i', $file) === 1) {
 			$this->runPhp($file);
 		} else {
 			echo "[SKIP] {$file}", PHP_EOL;
-			return;
 		}
 	}
 
 	public function runDir($dir)
 	{
-		if (empty($dir)) {
+		if (empty($dir) || trim($dir) === '') {
 			echo '[SKIP] dir is empty', PHP_EOL;
 			return;
 		}
@@ -59,13 +58,22 @@ class FileRunner extends Runner
 
 	public function runPhp($file)
 	{
-		extract((array) $this);
+		$closure = function() use ($file) {
+			extract((array) $this);
+			require $file;
+		};
 
 		try {
-			require $file;
-			echo "[DONE] {$file}", PHP_EOL;
+			$result = $closure();
+
+			if ($result === false) {
+				echo "[FAIL] {$file}", PHP_EOL;
+			} else {
+				echo "[DONE] {$file}", PHP_EOL;
+			}
 		} catch (Exception $e) {
-			echo "[FAIL] {$e->getMessage()}", PHP_EOL;
+			$this->driver->logs[] = ['error' => $e->getMessage()];
+			echo "[FAIL] {$file}", PHP_EOL;
 		}
 	}
 }

@@ -9,15 +9,18 @@ class Yii2Driver extends Driver
 {
 	public Connection $connect;
 
-	public function connect(Connection &$connect)
+	/**
+	 * @param Connection $connect
+	 */
+	public function connect(&$connect)
 	{
 		$this->connect = $connect;
 	}
 
 	public function query($sql)
 	{
-		if (empty($sql)|| empty(trim($sql))) {
-			$this->logs[] = ['sql' => $sql, 'error' => 'empty'];
+		if (empty($sql) || trim($sql) === '') {
+			$this->logs[] = ['query' => $sql, 'error' => 'empty'];
 			return false;
 		}
 
@@ -29,7 +32,6 @@ class Yii2Driver extends Driver
 				'result' => $result,
 			];
 			return true;
-
 		} catch (Exception $e) {
 			$this->logs[] = [
 				'query' => $sql,
