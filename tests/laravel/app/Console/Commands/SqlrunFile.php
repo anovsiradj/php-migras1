@@ -14,9 +14,9 @@ class SqlrunFile extends \Illuminate\Console\Command
 		$runner = new FileRunner;
 		$runner->driver(new LaravelDriver);
 
-		$runner->run("{$_ENV['FILE_DIR']}/structures.sql");
+		$runner->run("{$_ENV['FILE_DIR']}/structures.sql", true);
 		$runner->runDir("{$_ENV['FILE_DIR']}/patches");
-		$runner->run("{$_ENV['FILE_DIR']}/contents.sql");
+		$runner->run("{$_ENV['FILE_DIR']}/contents.sql", true);
 
 		dump($runner->driver->logs('error'));
 	}

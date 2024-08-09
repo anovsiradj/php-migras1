@@ -6,6 +6,8 @@ class Driver
 {
 	public $logs = [];
 
+	public $migration = false;
+
 	public function logs($key)
 	{
 		$logs = array_map(fn ($log) => $log[$key] ?? null, $this->logs);
@@ -18,25 +20,37 @@ class Driver
 	 */
 	public function query($sql)
 	{
-		$this->logs[] = ['query' => $sql, 'error' => 'unimplemented'];
+		$this->logs[] = array_merge(func_get_args(), ['error' => 'unimplemented']);
 		return false;
 	}
 
-	public function fetchOne($sql)
+	public function fetchOne($sql, $params = [])
 	{
-		$this->logs[] = ['query' => $sql, 'error' => 'unimplemented'];
+		$this->logs[] = array_merge(func_get_args(), ['error' => 'unimplemented']);
 		return null;
 	}
 
-	public function fetchAll($sql)
+	public function fetchAll($sql, $params = [])
 	{
-		$this->logs[] = ['query' => $sql, 'error' => 'unimplemented'];
+		$this->logs[] = array_merge(func_get_args(), ['error' => 'unimplemented']);
 		return null;
 	}
 
-	public function fetchScalar($sql)
+	public function fetchScalar($sql, $params = [])
 	{
-		$this->logs[] = ['query' => $sql, 'error' => 'unimplemented'];
+		$this->logs[] = array_merge(func_get_args(), ['error' => 'unimplemented']);
+		return null;
+	}
+
+	public function migrationExist($name)
+	{
+		$this->logs[] = array_merge(func_get_args(), ['error' => 'unimplemented']);
+		return null;
+	}
+
+	public function migrationInsert($name)
+	{
+		$this->logs[] = array_merge(func_get_args(), ['error' => 'unimplemented']);
 		return null;
 	}
 }
