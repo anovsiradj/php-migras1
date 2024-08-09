@@ -4,6 +4,8 @@
  * @var \anovsiradj\sqlrun\drivers\Driver $driver
  */
 
+// return true;
+
 $driver->query(<<<SQL
 	ALTER TABLE `user` ADD UNIQUE `username_unq` (`username`);
 SQL);
