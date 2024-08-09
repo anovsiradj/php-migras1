@@ -2,12 +2,28 @@
 
 namespace anovsiradj\sqlrun\drivers;
 
+use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 class LaravelDriver extends Driver
 {
 	public $migration = true;
+
+	public ConnectionInterface $connect;
+
+	public function __construct()
+	{
+		$this->connect(DB::connection());
+	}
+
+	/**
+	 * @param ConnectionInterface $connect
+	 */
+	public function connect($connect)
+	{
+		$this->connect = $connect;
+	}
 
 	public function query($sql)
 	{
@@ -17,7 +33,7 @@ class LaravelDriver extends Driver
 		}
 
 		try {
-			$result = DB::unprepared($sql);
+			$result = $this->connect->unprepared($sql);
 			$this->logs[] = ['query' => $sql, 'result' => $result];
 			return $result;
 		} catch (QueryException $e) {
@@ -33,7 +49,7 @@ class LaravelDriver extends Driver
 		}
 
 		$table = config('database.migrations');
-		$model = DB::table($table)->where('migration', '=', $name)->first();
+		$model = $this->connect->table($table)->where('migration', '=', $name)->first();
 
 		if (isset($model)) {
 			return true;
@@ -47,7 +63,7 @@ class LaravelDriver extends Driver
 		}
 
 		$table = config('database.migrations');
-		DB::table($table)->insertOrIgnore([
+		$this->connect->table($table)->insertOrIgnore([
 			'migration' => $name,
 			'batch' => time(), // TIMESTAMP
 		]);

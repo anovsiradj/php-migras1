@@ -2,12 +2,20 @@
 
 namespace anovsiradj\sqlrun\drivers;
 
+use Yii;
 use yii\db\Connection;
 use yii\db\Exception;
 
 class Yii2Driver extends Driver
 {
 	public Connection $connect;
+
+	public function __construct()
+	{
+		if (Yii::$app->has('db')) {
+			$this->connect(Yii::$app->get('id'));
+		}
+	}
 
 	/**
 	 * @param Connection $connect
