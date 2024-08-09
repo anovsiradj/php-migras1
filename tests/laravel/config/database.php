@@ -35,4 +35,6 @@ return [
 			'sslmode' => 'disable',
 		],
 	],
+
+	'migrations' => 'laravel_migrations',
 ];

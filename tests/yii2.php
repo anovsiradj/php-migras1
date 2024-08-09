@@ -19,9 +19,15 @@ $app = new yii\console\Application([
 	'components' => [
 		'db' => [
 			'class' => yii\db\Connection::class,
-			'dsn' => $env['YII_DSN'],
-			'username' => $env['YII_USERNAME'],
-			'password' => $env['YII_PASSWORD'],
+			'dsn' => $env['YII2_DSN'],
+			'username' => $env['YII2_USERNAME'],
+			'password' => $env['YII2_PASSWORD'],
+		],
+	],
+	'controllerMap' => [
+		'migrate' => [
+			'class' => yii\console\controllers\MigrateController::class,
+			'migrationTable' => 'yii2_migrations',
 		],
 	],
 ]);
