@@ -17,4 +17,5 @@ $runner->run("{$env['FILE_DIR']}/structures.sql");
 $runner->runDir("{$env['FILE_DIR']}/patches");
 $runner->run("{$env['FILE_DIR']}/contents.sql");
 
+// dump($driver->logs);
 dump($driver->logs('error'));
