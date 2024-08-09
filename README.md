@@ -7,7 +7,8 @@ must:
 may:
 - pdo sqlite driver
 - mysql driver
-- sqlite3 driver
+- sqlite driver
+- sqlsrv driver
 - pdo firebird driver
 
 done:
@@ -16,7 +17,7 @@ done:
 - pdo mysql/mariadb driver
 - pdo pgsql driver
 - yii2 driver
-- laravel driver
+- laravel driver (migration)
 
 ### refs
 
