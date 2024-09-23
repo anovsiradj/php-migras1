@@ -48,4 +48,45 @@ class PdoDriver extends Driver
 			return false;
 		}
 	}
+
+	public function migrationExist($name)
+	{
+		if (!$this->migration) {
+			return false;
+		}
+
+		$deklar = $this->connect->prepare(<<<SQL
+			SELECT * from migrations
+			WHERE migration=:migration
+		SQL);
+
+		$deklar->execute([
+			':migration' => $name,
+		]);
+
+		$result = $deklar->fetch() ?: null;
+		if (isset($result)) {
+			return true;
+		}
+	}
+
+	public function migrationInsert($name)
+	{
+		if (!$this->migration) {
+			return;
+		}
+
+		$deklar = $this->connect->prepare(<<<SQL
+			INSERT INTO
+			migrations (migration, created_at)
+			VALUES (:migration, :created_at)
+		SQL);
+
+		$result = $deklar->execute([
+			':migration' => $name,
+			':created_at' => date('c'),
+		]);
+
+		return $result;
+	}
 }

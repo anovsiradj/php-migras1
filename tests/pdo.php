@@ -9,6 +9,7 @@ $connect = new PDO($env['PDO_DSN'], $env['PDO_USERNAME'], $env['PDO_PASSWORD']);
 
 $driver = new PdoDriver;
 $driver->connect($connect);
+$driver->migration = true;
 
 $runner = new FileRunner;
 $runner->driver($driver);
