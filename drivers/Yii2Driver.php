@@ -13,7 +13,7 @@ class Yii2Driver extends Driver
 	public function __construct()
 	{
 		if (Yii::$app->has('db')) {
-			$this->connect(Yii::$app->get('id'));
+			$this->connect(Yii::$app->get('db'));
 		}
 	}
 
