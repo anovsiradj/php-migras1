@@ -4,15 +4,12 @@ namespace sqlrun\yii2\controllers;
 
 use anovsiradj\sqlrun\drivers\Yii2Driver;
 use anovsiradj\sqlrun\runners\FileRunner;
-use Yii;
 
 class SqlrunController extends \yii\console\Controller
 {
-	public function actionFile()
+	public function actionIndex()
 	{
 		$driver = new Yii2Driver;
-		$driver->connect(Yii::$app->db);
-
 		$runner = new FileRunner;
 		$runner->driver($driver);
 

@@ -3,7 +3,7 @@ mempersiapkan definisi koneksi database
 ```sh
 cp .env.default .env
 
-php ./pdo_file.php
+php ./pdo.php
 ```
 
 eksekusi migrasi yii2

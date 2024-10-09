@@ -39,3 +39,13 @@ done:
 
 - https://www.php.net/manual/en/book.pdo.php
 - https://gist.github.com/CMCDragonkai/21269f06cea88c76be47ed73a2a5af9d
+
+### notes
+
+- https://stackoverflow.com/a/23765464
+- https://cogito-ergo-dev.fr/blog/16981/result-set-postgresql-et-php/
+- https://stackoverflow.com/a/17493466
+- https://github.com/yiisoft/yii2/issues/4683
+- https://stackoverflow.com/a/23258691
+- https://stackoverflow.com/a/23418118
+- https://github.com/gozoro/yii2-sql-migrations/blob/1f1b6bf03a06a8a34d090cc031e600ed61b03bae/src/MigrateBaseController.php#L171

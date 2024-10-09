@@ -4,7 +4,6 @@ namespace anovsiradj\sqlrun\drivers;
 
 use Yii;
 use yii\db\Connection;
-use yii\db\Exception;
 
 class Yii2Driver extends Driver
 {
@@ -33,18 +32,39 @@ class Yii2Driver extends Driver
 		}
 
 		try {
-			$result = $this->connect->createCommand($sql)->execute();
+			$result = $this->connect->masterPdo->exec($sql);
+			if ($result === false) {
+				$this->logs[] = [
+					'error' => $this->connect->masterPdo->errorInfo(),
+					'result' => $result,
+				];
 
-			$this->logs[] = [
-				'query' => $sql,
-				'result' => $result,
-			];
+				return false;
+			}
+
 			return true;
-		} catch (Exception $e) {
+		} catch (\yii\db\Exception $e) {
 			$this->logs[] = [
 				'query' => $sql,
+				'catch' => \yii\db\Exception::class,
 				'error' => $e->getMessage(),
 			];
+
+			return false;
+		} catch (\PDOException $e) {
+			$this->logs[] = [
+				'query' => $sql,
+				'catch' => \PDOException::class,
+				'error' => $e->getMessage(),
+			];
+
+			return false;
+		} catch (\Exception $e) {
+			$this->logs[] = [
+				'query' => $sql,
+				'catch' => get_class($e),
+			];
+
 			return false;
 		}
 	}
